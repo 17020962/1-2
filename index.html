@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>baitaptuan1</title>
+	<style>
+		body{
+			width: 500px;
+			height: auto;
+			text-align: center;
+			margin: 0px;
+			padding-left: 0px;
+		}
+
+		.header{
+			background: red;
+			margin-bottom: 0px;
+		}
+		.header h1{
+			color: white;
+		}
+		.header .inadd input{
+			margin-bottom: 10px;
+			border: none;
+			font-size: 30px;
+			width: 71%;
+		}
+		.header .inadd button{
+			border: none ;
+			font-size: 30px;
+			background-color:#5d6968;
+			color: black;
+		}
+
+		.header .inadd button:hover{
+			background-color: grey;
+		}
+
+		.main ul{
+			padding-left: 0px;
+			margin: 0px;
+		}
+		.main ul li {
+			list-style: none;
+			font-size: 16px;
+			height: 22px;
+			width: 450px;
+			padding: 12px 10px 10px 40px;
+			background-color: #ece1e1; 
+		}
+
+		.main ul li:hover{
+			background-color: #b9a0a0;
+			position: relative;
+		}
+
+		.main ul li .name{
+			float: left;
+			clear: left;
+		}
+
+		.main ul li .close{
+			float: right;
+			clear: right;
+			top: 0px;
+			right: 0px;
+
+		}
+		.main ul li:hover .close{
+			background: red;
+			position: absolute;
+			padding: 13px;
+		}
+	</style>
+</head>
+<body>
+	<div class = "header">
+		<h1>Danh sách học sinh trong lớp</h1>
+		<form action="" id="create" class="inadd">
+			<input id="input" type="text" placeholder="Title..." /><button onclick="extra();">ADD</button>
+		</form>
+	</div>
+	<div class="main">
+		<ul id="ul">
+			<li><span class="name">Trần Hồng Phúc</span><span class="close">x</span> </li>
+			<li><span class="name">Trần Hồng Phúc</span><span class="close">x</span></li>
+			<li><span class="name">Trần Hồng Phúc</span><span class="close">x</span></li>
+		</ul>
+		
+	</div>
+	<script>
+		
+		function extra() {
+			var li = document.createElement("li");
+			var input = document.getElementById("input").value;
+			var newLi = document.createTextNode("input");
+			var b = document.createElement("div");
+			//them newli vao li vừa được tạo 
+			var node = document.createTextNode(input);
+  			var node1 = document.getElementsByTagName("span")[1];
+			 b.appendChild(node1);
+			 li.appendChild(b);
+			 li.appendChild(node);
+		
+			var temp = document.getElementById("ul");
+			temp.appendChild(li);
+			//alert(input);
+
+			//var document.Crete
+			// body...
+		}
+	</script>
+
+</body>
+</html>
