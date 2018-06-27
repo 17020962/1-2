@@ -15,7 +15,7 @@
 			color: white;
 		}
 		.input{
-			padding-left: 55px;
+			padding-left: 83px;
 		}
 		.input-in{
 			font-size: 25px;
@@ -62,7 +62,6 @@
 			position: absolute;
 			padding: 13px;
 		}
-
 	</style>
 </head>
 <body>
@@ -70,98 +69,72 @@
 		<div class="header">
 			<div class="header-up">My To Do List</div>
 			<div class="input">
-			<input id="MyInput" class="input-in" type="text"><button id="add" onclick= ""  class="button">Add</button>
+			<input id="input-in" class="input-in" type="text" onkeypress="myFunction(event)">
 			</div>
 		</div>
 	<div class="main">
-		<ul id="myUl">
+		<ul id="myList">
 			
 		</ul>
 		
 	</div>
 	</div>
 	<script type="text/javascript">
-		var span = document.getElementById('add');
-		var input = document.getElementById('MyInput');
-		var list = document.getElementById('myUl');
-		function removeTodoFromStorage(index) {//hàm xóa một mục trong list
-		    var todos = getTodosFromStorage();
-		    todos.splice(index, 1 );
-		    saveTodosToStorage(todos);
-		}
-		function addTodoToLocalStorage(text) {//hàm add một mục mới vào list
-		    var todos = getTodosFromStorage();
-		    todos.push({//chuyển giá trị của todos từ string sang obj 
-		        text: text,
-		        completed: false
-		    });
-		    saveTodosToStorage(todos);//lưu giá trị vừa chuyển sang obj vào todos
-		}
-		function handleRemoveTodo(target) {//hàm xóa giá trị trong list
-		    var todo = target.parentElement;
-		    var id = todo.id;
-		    removeTodoFromStorage(id);
-		}
-		function handcomplete(target){//hàm đánh dấu hoàn thành công việc trong list
-		    var todos = getTodosFromStorage();
-		    var id = target.id;
-		    var todo = todos[id];
-		    todo.completed = !todo.completed;
-		    saveTodosToStorage(todos);
-		}
-		function onClickTodo(event) {//hàm  xử lí việc complete và xóa các công việc trong list
-		    var target = event.target;
-		    var tag = target.tagName;//có một cái tag nếu bấm vào tag thì sẽ làm một việc gì đó(tagName chính là một trong các thẻ mình bấm vào)
-		    if(tag === 'LI'){
-		        handcomplete(target);
-			}
-		    if (tag === 'SPAN') {
-		        handleRemoveTodo(target);
-		    }
-		    render();
-		}
-		function renderTodoToHTML(text, completed,i) {//hàm render một mục của list ra to do list
-		    var todo = document.createElement('li');//tạo một thẻ li mới
-		    todo.innerHTML = text + '<span class="close">x</span>';
-		    todo.id = i;
-		    if (completed) {
-		        todo.className = "completed";
-		    }
-		    todo.addEventListener('click', onClickTodo);
-		    list.appendChild(todo);
-		}
-		function getTodosFromStorage() {//hàm lấy giá trị trong localstorage
-		    var str = localStorage.getItem('todos');//lấy giá trị locstr có tên là todos nó đương nhiên có dạng là object
-		        return JSON.parse(str);
-		}
-		function saveTodosToStorage(todos) {//hàm lưu giá trị trong localstorage
-		    var str = JSON.stringify(todos);//chuyển đối tượng trong locstr thành dạng string
-		    return localStorage.setItem('todos', str);//đặt tên cho locstr là todos
-		}
-		function clearList() {//hàm này có tác dụng làm sạch phần input
-		    list.innerHTML = '';
-		}
-		function renderTodosList() {//hàm có tác dụng in toàn bộ list 
-		    var todos = getTodosFromStorage();
-		    for (var i = 0; i < todos.length; i++) {
-		        var todo = todos[i];
-		        renderTodoToHTML(todo.text, todo.completed,i);
-		    }
-		}
-		function render() {//hàm có tác dụng xóa và in lại toàn bộ list trong quá trình làm việc có sự sửa đổi
-		    clearList();
-		    renderTodosList();
-		}
-		function emptyInput() {//hàm có tác dụng làm sạch input để dễ viết hành động tiếp theo
-		   input.value = '';
-		}
-		span.addEventListener('click', function () {//hàm này coi như là hàm chính luôn khi mà mình bấm vào button add thì việc thêm thành phần vào list được thực hiện
-		    var text = input.value;//lấy giá trị trong input
-		    addTodoToLocalStorage(text);
-		    render();
-		    emptyInput();
-		});
-		render();
+		var str = [];
+
+function pushStringToArray(){
+
+	var text = documnet.getElementById("input-in").value;
+    str.push(text);
+	
+}
+
+function render(){
+	document.getElementById("myList").innerHTML = "";
+    for(var i = 0; i<str.length;i++){
+      var node = document.createElement("LI");
+      node.id = i;
+      node.innerHTML = str[i] + '<span class="close">&times;</span>';
+      addEvent(node);
+      document.getElementById("myList").appendChild(node);
+	}
+    
+}
+
+function freshInput(){
+	document.getElementById("input-in").value = '';
+}
+
+function myFunction(event){
+	
+   var x = event.code;
+   if(x === "Enter" ){
+     AddFunction();
+     freshInput();
+   }
+
+}
+
+function AddFunction(){
+ 	var text = document.getElementById("input-in").value;
+    str.push(text);
+    render();
+}
+
+function addEvent(node){
+	node.addEventListener("click",function(){
+    	removeTodoInString(node.id);
+        render();
+    });
+}
+
+function removeTodoInString(index){
+
+	str.splice(index,1);
+    
+    
+}
+
 	</script>
 </body>
 </html>
