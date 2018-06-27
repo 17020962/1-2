@@ -1,61 +1,92 @@
 <!DOCTYPE html>
-<html>
-<style>
-	#myList li{
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>To Do List</title>
+	<style type="text/css">
+		body {
+			width: 500px;
+			margin: 0 auto;
+			margin-top: 20px;
+		}
+		.header{
+			background: red;
+			height: 100px;
+			color: white;
+		}
+		.input{
+			padding-left: 55px;
+		}
+		.input-in{
+			font-size: 25px;
+		}
+		.button{
+			font-size: 25px;
+		}
+		.header-up{
+			font-size: 52px;
+			padding-left: 84px;
+		}
+		.main ul{
+			padding-left: 0px;
+			margin: 0px;
+		}
+		.main ul li {
 			list-style: none;
 			font-size: 16px;
 			height: 22px;
 			width: 450px;
 			padding: 12px 10px 10px 40px;
 			background-color: #ece1e1; 
-      }
-     #myList li span{
-			height: 18px;
-			width: 10px;
-            float: right;
-			clear: right;
 		}
-      #myList li:hover{
+		.main ul li:hover{
 			background-color: #b9a0a0;
 			position: relative;
 		}
-      #myList li:hover .close{
-      		top: 0px;
+		.main ul li{
+			float: left;
+			clear: left;
+		}
+		.main ul li .close{
+			float: right;
+			clear: right;
+			top: 0px;
 			right: 0px;
-      		background: red;
+		}
+		.main ul li span{
+			height: 18px;
+			width: 10px;
+		}
+		.main ul li:hover .close{
+			background: red;
 			position: absolute;
-            padding: 13px;
-      }
-</style>
-
+			padding: 13px;
+		}
+	</style>
+</head>
 <body>
-
-<ul id="myList">
-  <li>Coffee<span class="close">&times;</span></li>
-  <li>Tea<span class="close">&times;</span></li>
-</ul>
-
-<p>Click the button to append an item to the end of the list.</p>
-
-<input id = "input-in" onclick="myFunction(event)"> 
-
-<button>Add to list</button>
-
-<div id = "demo"></div>
-
-<script>
-
-var str = [];
+	<div id="main-todo">
+		<div class="header">
+			<div class="header-up">My To Do List</div>
+			<div class="input">
+			<input id="input-in" class="input-in" type="text"><button  onclick= "myFunction(event)"  class="button">Add</button>
+			</div>
+		</div>
+	<div class="main">
+		<ul id="myList">
+			
+		</ul>
+		
+	</div>
+	</div>
+	<script type="text/javascript">
+		var str = [];
 
 function pushStringToArray(){
 
 	var text = documnet.getElementById("input-in").value;
     str.push(text);
 	
-}
-
-function freshInput(){
-	document.getElementById("input-in").value = '';
 }
 
 function render(){
@@ -70,8 +101,12 @@ function render(){
     
 }
 
-function myFunction(event){
+function freshInput(){
+	document.getElementById("input-in").value = '';
+}
 
+function myFunction(event){
+	
    AddFunction();
    freshInput();
    
@@ -97,9 +132,6 @@ function removeTodoInString(index){
     
 }
 
-</script>
-
-<p><strong>Note:</strong><br>First create an LI node,<br> then create a Text node,<br> then append the Text node to the LI node.<br>Finally append the LI node to the list.</p>
-
+	</script>
 </body>
 </html>
