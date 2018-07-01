@@ -2,136 +2,184 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>To Do List</title>
+	<title>Chat box</title>
 	<style type="text/css">
-		body {
-			width: 500px;
-			margin: 0 auto;
+		body{
+			margin-left: 180px;
 			margin-top: 20px;
 		}
-		.header{
-			background: red;
-			height: 100px;
-			color: white;
+		.up{
+			width: 1000px;
 		}
-		.input{
-			padding-left: 55px;
-		}
-		.input-in{
-			font-size: 25px;
-		}
-		.button{
-			font-size: 25px;
-		}
-		.header-up{
-			font-size: 52px;
-			padding-left: 84px;
-		}
-		.main ul{
-			padding-left: 0px;
-			margin: 0px;
-		}
-		.main ul li {
-			list-style: none;
-			font-size: 16px;
-			height: 22px;
-			width: 450px;
-			padding: 12px 10px 10px 40px;
-			background-color: #ece1e1; 
-		}
-		.main ul li:hover{
-			background-color: #b9a0a0;
-			position: relative;
-		}
-		.main ul li{
+		.up .left-box{
+			width: 700px;
+			min-height: 400px;
 			float: left;
 			clear: left;
 		}
-		.main ul li .close{
+		.up .right{
+			width: 300px;
+			min-height: 400px;
+			float: left;
+		}
+		.up .right img{
+			width: 200px;
+			height: 200px;
+			border-radius: 50%;
+			padding: 50px;	
+		}
+		.left-box .left{
+			width: 300px;
+			float: left;
+		}
+		.left-box .left img{
+			width: 200px;
+			height: 200px;
+			border-radius: 50%;
+			padding: 50px;
+		}
+		.left-box .box{
+			width: 400px;
+			background-color: #ccffcc;
+			height: 400px;
 			float: right;
-			clear: right;
-			top: 0px;
-			right: 0px;
+			color: white;
+			overflow: scroll;
 		}
-		.main ul li span{
-			height: 18px;
-			width: 10px;
+		.left-box .box .box-title{
+			text-align: center;
+			height: 50px;
+			background-color: #9900cc;
+			padding-top: 15px; 
 		}
-		.main ul li:hover .close{
-			background: red;
-			position: absolute;
-			padding: 13px;
+		.left-box .box .person1-saying{
+			width: 300px;
+			background-color: #0066cc;
+			border-radius: 15px;
+			float: left;
+			text-align: center;
+			margin-top: 20px;
+		}
+		.left-box .box .person2-saying{
+			width: 300px;
+			background-color: #0066cc;
+			border-radius: 15px;
+			float: right;
+			text-align: center;
+			min-height: 50px;
+			margin-top: 20px;
+		}
+		li{
+			width: 300px;
+			background-color: #0066cc;
+			border-radius: 15px;
+			float: left;
+			text-align: center;
+			margin-top: 20px;
+			margin-left: 0px;
+			list-style: none;
+			word-wrap: break-word;
+		}
+		span{
+			width: 300px;
+			background-color: #0066cc;
+			border-radius: 15px;
+			float: right;
+			text-align: center;
+			margin-top: 20px;
+			list-style: none;
+			word-wrap: break-word;
+		}
+		.down{
+			width: 1000px;
+		}
+		.down .person1{
+			width: 500px;
+			background-color: pink;
+			min-height: 200px;
+			float: left;
+			clear: left;
+			text-align: center;
+		}
+		.down .person1 .person1-title{
+			padding-top: 10px;
+			padding-bottom: 20px; 
+			background-color: orange;
+			font-family: Tahoma;
+		}
+		.down .person1 .person1-input{
+			padding-top: 30px;
+		}
+		.down .person1 .person1-input input{
+			font-size: 30px;
+		}
+		.down .person2{
+			width: 500px;
+			background-color: green;
+			min-height: 200px;
+			float: right; 
+			text-align: center;
+		}
+		.down .person2 .person2-title{
+			padding-top: 10px;
+			padding-bottom: 20px; 
+			background-color: #ffff99;
+			font-family: Tahoma;
+		}
+		.down .person2 .person2-input{
+			padding-top: 30px;
+		}
+		.down .person2 .person2-input input{
+			font-size: 30px;
 		}
 	</style>
 </head>
 <body>
-	<div id="main-todo">
-		<div class="header">
-			<div class="header-up">My To Do List</div>
-			<div class="input">
-			<input id="input-in" class="input-in" type="text"><button  onclick= "myFunction(event)"  class="button">Add</button>
+	<div class="up">
+		<div class="left-box">
+			<div class="left"><img src="image/My.jpg"/></div>
+			<div class="box">
+				<div class="box-title">MESSAGE</div>
+				<ul id="list-message">
+					
+				</ul>
 			</div>
 		</div>
-	<div class="main">
-		<ul id="myList">
-			
-		</ul>
-		
+		<div class="right"><img src="image/Phuc.jpg"></div>
 	</div>
+	<div class="down">
+		<div class="person1">
+			<div class="person1-title">PERSON1</div>
+			<div class="person1-input">
+			<input type="text" name="" id="mes-person1" onkeypress="person1Saying(event)">
+			</div>
+		</div>
+		<div class="person2">
+			<div class="person2-title">PERSON2</div>
+			<div class="person2-input">
+			<input type="text" name="" id="mes-person2" onkeypress="person2Saying(event)">
+			</div>
+		</div>
 	</div>
 	<script type="text/javascript">
-		var str = [];
-
-function pushStringToArray(){
-
-	var text = documnet.getElementById("input-in").value;
-    str.push(text);
-	
-}
-
-function render(){
-	document.getElementById("myList").innerHTML = "";
-    for(var i = 0; i<str.length;i++){
-      var node = document.createElement("LI");
-      node.id = i;
-      node.innerHTML = str[i] + '<span class="close">&times;</span>';
-      addEvent(node);
-      document.getElementById("myList").appendChild(node);
-	}
-    
-}
-
-function freshInput(){
-	document.getElementById("input-in").value = '';
-}
-
-function myFunction(event){
-	
-   AddFunction();
-   freshInput();
-   
-}
-
-function AddFunction(){
- 	var text = document.getElementById("input-in").value;
-    str.push(text);
-    render();
-}
-
-function addEvent(node){
-	node.addEventListener("click",function(){
-    	removeTodoInString(node.id);
-        render();
-    });
-}
-
-function removeTodoInString(index){
-
-	str.splice(index,1);
-    
-    
-}
-
+		function person1Saying(event) {
+			var x = event.which;
+			if(event.which===13){
+				var str1 = document.getElementById("mes-person1").value;
+				var mes = document.createElement('li');
+				mes.innerHTML = str1;
+				document.getElementById("list-message").appendChild(mes);
+			}
+		}
+		function person2Saying(event) {
+			var x = event.which;
+			if(event.which===13){
+				var str1 = document.getElementById("mes-person2").value;
+				var mes = document.createElement('span');
+				mes.innerHTML = str1;
+				document.getElementById("list-message").appendChild(mes);
+			}
+		}
 	</script>
 </body>
 </html>
